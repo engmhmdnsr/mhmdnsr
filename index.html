@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohamed Nagy Nasr — Scaffolding Engineer</title>
+<style>
+  :root{
+    --ink:#15202b;
+    --ink-soft:#3a4753;
+    --paper:#f7f6f3;
+    --line:#dedad2;
+    --accent:#2f6b4f;
+    --accent-soft:#e7efe9;
+    --tag-bg:#15202b;
+    --tag-fg:#9fe3b8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Segoe UI', Tahoma, Arial, sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:880px;margin:0 auto;padding:0 28px 60px;}
+  header.hero{
+    background:var(--ink);
+    color:#fff;
+    margin:0 0 30px;
+    padding:34px 28px 28px;
+  }
+  header.hero .inner{max-width:880px;margin:0 auto;}
+  .status-tag{
+    display:inline-block;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    background:rgba(159,227,184,0.12);
+    color:var(--tag-fg);
+    border:1px solid rgba(159,227,184,0.35);
+    padding:4px 10px;
+    border-radius:3px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-size:38px;
+    letter-spacing:6px;
+    margin:0 0 10px;
+    font-weight:700;
+  }
+  .role-line{
+    color:var(--tag-fg);
+    font-size:15px;
+    letter-spacing:1px;
+    margin-bottom:14px;
+  }
+  .role-line b{color:#fff;letter-spacing:2px;}
+  .contact{
+    font-size:13.5px;
+    color:#cfd8df;
+  }
+  .contact span{margin-right:6px;}
+  .stats{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 22px;
+    margin:26px 0 6px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .stats b{color:var(--accent);}
+  section{margin-bottom:34px;}
+  .sec-title{
+    font-size:12px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:var(--accent);
+    border-bottom:1px solid var(--line);
+    padding-bottom:6px;
+    margin-bottom:16px;
+    font-weight:700;
+  }
+  .summary{font-size:15px;color:var(--ink-soft);max-width:760px;}
+  .skills-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px 30px;
+    font-size:14.5px;
+  }
+  .skills-grid div::before{content:"— ";color:var(--accent);font-weight:700;}
+  .job{
+    border-left:3px solid var(--accent);
+    padding:2px 0 14px 18px;
+    margin-bottom:22px;
+    position:relative;
+  }
+  .job-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;}
+  .job-co{font-size:16.5px;font-weight:700;}
+  .job-role{font-style:italic;color:var(--ink-soft);font-size:14px;margin-bottom:8px;}
+  .job-dates{font-size:13px;color:var(--accent);font-weight:700;white-space:nowrap;}
+  .job ul{margin:0 0 8px;padding-left:18px;font-size:14.5px;color:var(--ink-soft);}
+  .job ul li{margin-bottom:3px;}
+  .job-site{font-size:13px;color:var(--ink-soft);}
+  .job-site b{color:var(--ink);}
+  .cert-edu{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;}
+  .cert-list{font-size:14.5px;color:var(--ink-soft);}
+  .cert-list div{margin-bottom:6px;}
+  .cert-list div::before{content:"— ";color:var(--accent);font-weight:700;}
+  .edu-block{margin-bottom:18px;}
+  .edu-degree{font-weight:700;font-size:15px;}
+  .edu-detail{font-size:13.5px;color:var(--ink-soft);font-style:italic;}
+  .edu-school{font-size:14px;margin-top:2px;}
+  .edu-dates{font-size:13px;color:var(--accent);}
+  .lang-row{display:flex;gap:40px;font-size:14.5px;}
+  .lang-row b{color:var(--accent);}
+  footer{
+    text-align:center;
+    font-size:12px;
+    color:#9aa3aa;
+    padding:20px 0 0;
+  }
+  @media(max-width:640px){
+    h1{font-size:28px;letter-spacing:3px;}
+    .skills-grid{grid-template-columns:1fr;}
+    .cert-edu{grid-template-columns:1fr;}
+  }
+
+  /* ===== Effects ===== */
+  @keyframes scanline{
+    0%{transform:translateY(-100%);}
+    100%{transform:translateY(700%);}
+  }
+  header.hero{
+    position:relative;
+    overflow:hidden;
+  }
+  header.hero::before{
+    content:"";
+    position:absolute;
+    left:0;right:0;
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--tag-fg), transparent);
+    opacity:.5;
+    animation:scanline 5s linear infinite;
+  }
+  header.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      repeating-linear-gradient(0deg, rgba(159,227,184,0.035) 0px, rgba(159,227,184,0.035) 1px, transparent 1px, transparent 26px);
+    pointer-events:none;
+  }
+  .status-tag{
+    animation:tagPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes tagPulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(159,227,184,0.0);}
+    50%{box-shadow:0 0 14px 0 rgba(159,227,184,0.35);}
+  }
+  h1{
+    opacity:0;
+    animation:titleIn .8s ease forwards .15s;
+  }
+  @keyframes titleIn{
+    from{opacity:0;transform:translateY(14px) scale(.98);letter-spacing:10px;}
+    to{opacity:1;transform:translateY(0) scale(1);letter-spacing:6px;}
+  }
+  .role-line, .contact{
+    opacity:0;
+    animation:fadeUp .7s ease forwards;
+  }
+  .role-line{animation-delay:.45s;}
+  .contact{animation-delay:.65s;}
+  @keyframes fadeUp{
+    from{opacity:0;transform:translateY(10px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .sec-title{
+    position:relative;
+  }
+  .sec-title::after{
+    content:"";
+    position:absolute;
+    left:0;bottom:-1px;
+    width:0;
+    height:2px;
+    background:var(--accent);
+    transition:width .7s ease;
+  }
+  .reveal.is-visible .sec-title::after{width:54px;}
+
+  .job{
+    transition:transform .35s ease, border-color .35s ease, background .35s ease;
+    border-radius:0 6px 6px 0;
+    position:relative;
+  }
+  .job:hover{
+    transform:translateX(6px);
+    background:var(--accent-soft);
+    border-color:#1f4d38;
+  }
+  .job::before{
+    content:"";
+    position:absolute;
+    left:-3px;top:0;
+    width:3px;height:0;
+    background:var(--tag-fg);
+    transition:height .4s ease;
+  }
+  .job:hover::before{height:100%;}
+
+  .job-co{transition:color .3s ease;}
+  .job:hover .job-co{color:var(--accent);}
+
+  .skills-grid div{
+    transition:transform .25s ease, color .25s ease;
+  }
+  .skills-grid div:hover{
+    transform:translateX(4px);
+    color:var(--accent);
+  }
+
+  .cert-list div{transition:transform .25s ease, color .25s ease;}
+  .cert-list div:hover{transform:translateX(4px);color:var(--accent);}
+
+  footer{
+    opacity:0;
+    animation:fadeUp .8s ease forwards;
+    animation-delay:.2s;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="inner">
+    <div class="status-tag">Scaffold Inspection Record · Status: Approved for Deployment</div>
+    <h1>MOHAMED NAGY NASR</h1>
+    <div class="role-line"><b>SCAFFOLDING ENGINEER</b> — Supervisor / Inspector · Saudi Aramco Approved</div>
+    <div class="contact">
+      <span>📍 Al Dammam, Eastern Province, KSA</span>
+      <span>·</span>
+      <span>📞 +966 55 3629384</span>
+      <span>·</span>
+      <span>✉️ engmhmdnsr@gmail.com</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="stats">
+    <div><b>8+ years</b> certified field experience</div>
+    <div>·</div>
+    <div><b>Onshore + Offshore</b> (Jackets · PDMs · Refineries · Pipelines)</div>
+    <div>·</div>
+    <div><b>Zero-LTI</b> track record</div>
+  </div>
+
+  <section class="reveal">
+    <div class="sec-title">Summary</div>
+    <p class="summary">
+      Saudi Aramco-approved Scaffolding Supervisor and Inspector with over 8 years of experience across onshore and
+      offshore oil &amp; gas projects in Saudi Arabia, including refineries, cross-country pipelines, offshore
+      platforms, jackets, and PDM installations. Skilled in Saudi Aramco CSM and GI 8.001 standards, structural load
+      calculations, scaffold design review, high-risk work supervision, and full HSE compliance. Experienced leading
+      multidisciplinary scaffolding teams while maintaining zero-LTI performance and strict schedule adherence. Holds
+      a B.Sc. in Agricultural Engineering (Mechanical Power &amp; Machinery Division) and is certified as a Saudi
+      Aramco Scaffolding Supervisor and Scaffolding Inspector.
+    </p>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-title">Core Skills</div>
+    <div class="skills-grid">
+      <div>Saudi Aramco CSM &amp; GI 8.001 standards</div>
+      <div>SIMOPS coordination</div>
+      <div>Scaffold design review &amp; load calculations</div>
+      <div>Scaffold tagging &amp; inspection cycles</div>
+      <div>2D/3D scaffold design &amp; access planning</div>
+      <div>HSE compliance &amp; risk assessment</div>
+      <div>Permit-to-Work (PTW) control</div>
+      <div>Team leadership, onshore &amp; offshore</div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-title">Field Experience</div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-co">SRACO Constructions / SAIPEM</div>
+        <div class="job-dates">Feb 2026 – Present</div>
+      </div>
+      <div class="job-role">Scaffolding Engineer / Inspector — Onshore</div>
+      <ul>
+        <li>Inspect and approve scaffolding structures against Saudi Aramco standards and international regulations.</li>
+        <li>Verify compliance with approved drawings and technical specifications; issue inspection tags and safe-for-use status.</li>
+        <li>Conduct pre-use, in-service, and post-modification inspections; coordinate with construction and HSE on corrective actions.</li>
+      </ul>
+      <div class="job-site"><b>Site:</b> Execution of Non-Critical Building, Abu Ali Plant — Berri Development PKG 1 (Aramco)</div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-co">Algihaz Marine Contractors (Lamprell)</div>
+        <div class="job-dates">Aug 2025 – Mar 2026</div>
+      </div>
+      <div class="job-role">Scaffolding Engineer / Supervisor — Offshore</div>
+      <ul>
+        <li>Aramco-approved Supervisor &amp; Inspector across two jackets and two PDMs with associated subsea facilities, ABSF (BID 125).</li>
+        <li>Supervised erection, modification, and dismantling for offshore construction and maintenance operations.</li>
+        <li>Ran routine and critical safety inspections; coordinated QA/QC and HSE to sustain zero-LTI performance.</li>
+      </ul>
+      <div class="job-site"><b>Site:</b> Two Jackets &amp; Two PDMs with Subsea Facilities — ABSF, Aramco CRPO# 125 &amp; 126</div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-co">Larsen &amp; Toubro (L&amp;T)</div>
+        <div class="job-dates">Oct 2024 – Mar 2025</div>
+      </div>
+      <div class="job-role">Scaffolding Engineer / Inspector — Offshore</div>
+      <ul>
+        <li>Supported offshore jacket and topsides installation on the Marjan Field Platforms project.</li>
+        <li>Worked offshore brownfield modification, subsea pipeline, and platform upgrade scopes across the Arabian Gulf.</li>
+      </ul>
+      <div class="job-site"><b>Site:</b> Replace Hydraulic ESD Systems — Marjan Offshore Platforms (Aramco CRPO 62)</div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-co">China Railway Construction Corp. — Saudi Branch</div>
+        <div class="job-dates">2023 – Oct 2024</div>
+      </div>
+      <div class="job-role">Scaffolding Engineer / Supervisor — Onshore</div>
+      <ul>
+        <li>Supervised erection, modification, and dismantling for onshore construction and maintenance scopes.</li>
+        <li>Ensured scaffolds met approved drawings, load requirements, and project specifications.</li>
+      </ul>
+      <div class="job-site"><b>Site:</b> Upgrade Buildings for Risk Mitigation, RTR3 (Ras Tanura) · Dhahran Corporate Academy</div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-co">Petroleum Projects &amp; Technical Consultation (PETROJET)</div>
+        <div class="job-dates">2020 – 2023</div>
+      </div>
+      <div class="job-role">Scaffolding Engineer / Supervisor — Onshore</div>
+      <ul>
+        <li>Senior Scaffolding Inspector &amp; Supervisor (Aramco-approved) across major refinery and pipeline expansion projects.</li>
+        <li>Managed the scaffold tagging system, led crews, and enforced HSE policy to sustain zero-LTI performance.</li>
+      </ul>
+      <div class="job-site"><b>Site:</b> Boiler Installation GPF (Jazan) · Control Systems (Ras Tanura) · Haradh HUG-2 · East-West Pipeline</div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-co">Al-Sabaan for Contracting and Trading</div>
+        <div class="job-dates">2019 – 2020</div>
+      </div>
+      <div class="job-role">Safety Engineer / Scaffolding Supervisor — Onshore</div>
+      <ul>
+        <li>Evaluated scaffolding materials for compliance with international standards; liaised with design management on site matters.</li>
+      </ul>
+      <div class="job-site"><b>Site:</b> Princess Nourah bint Abdulrahman University · Security Forces Hospital (Maintenance)</div>
+    </div>
+
+    <div class="job">
+      <div class="job-head">
+        <div class="job-co">Petroleum Projects &amp; Technical Consultation (PETROJET)</div>
+        <div class="job-dates">2018 – 2019</div>
+      </div>
+      <div class="job-role">Scaffolding Engineer / Supervisor — Onshore</div>
+      <ul>
+        <li>Supervised erection, modification, and dismantling at oil &amp; gas sites; ran daily and periodic inspections.</li>
+        <li>Reviewed scaffolding drawings, trained crews, and oversaw multiple simultaneous refinery and pipeline scopes.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-title">Certifications &amp; Education</div>
+    <div class="cert-edu">
+      <div class="cert-list">
+        <div>Saudi Aramco Scaffolding Inspector — 2023 (valid 3 yrs)</div>
+        <div>Saudi Aramco Scaffolding Supervisor I — 2022 (renewal in progress)</div>
+        <div>BOSIET w/ EBS — 2025 (valid 4 yrs)</div>
+        <div>H2S / SCBA — 2025 (valid 2 yrs)</div>
+        <div>PST, STCW '95 — 2024 (valid 4 yrs)</div>
+        <div>OSHA-30 Hr Diploma, ISEP Academy</div>
+        <div>24-Hr Hazard Recognition · First Aid · BLS Provider — 2024 (valid 2 yrs)</div>
+      </div>
+      <div>
+        <div class="edu-block">
+          <div class="edu-degree">B.Sc., Agricultural Engineering</div>
+          <div class="edu-detail">Mechanical Power &amp; Machinery Division</div>
+          <div class="edu-school">Zagazig University</div>
+          <div class="edu-dates">2014 – 2018</div>
+        </div>
+        <div class="edu-block">
+          <div class="edu-degree">M.Sc., Computing and Information Systems</div>
+          <div class="edu-school">Liverpool John Moores University</div>
+          <div class="edu-dates">May 2026 – May 2028 · In Progress</div>
+        </div>
+        <div class="edu-detail">Training: AutoCAD 2D · MicroStation 2D · ICDL v5</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <div class="sec-title">Languages</div>
+    <div class="lang-row">
+      <div><b>Arabic</b> — Native</div>
+      <div><b>English</b> — Professional Working Proficiency</div>
+    </div>
+  </section>
+
+  <footer>Last updated June 2026</footer>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
